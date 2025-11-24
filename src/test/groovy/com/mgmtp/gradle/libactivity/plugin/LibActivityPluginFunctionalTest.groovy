@@ -20,11 +20,11 @@ class LibActivityPluginFunctionalTest extends Specification {
 
     File testProjectDir
 
-    static final String LIB_COMMONS_LANG_3 = 'org.apache.commons:commons-lang3:3.11'
+    static final String LIB_COMMONS_LANG_3 = 'org.apache.commons:commons-lang3:3.21.0'
 
-    static final String LIB_LOGBACK_CLASSIC = 'ch.qos.logback:logback-classic:1.2.3'
+    static final String LIB_LOGBACK_CLASSIC = 'ch.qos.logback:logback-classic:1.5.21'
 
-    static final String LIB_LOGBACK_CORE = 'ch.qos.logback:logback-core:1.2.3'
+    static final String LIB_LOGBACK_CORE = 'ch.qos.logback:logback-core:1.5.21'
 
     static String TASK_NAME = ':checkLibActivity'
 
