@@ -1,16 +1,15 @@
 package com.mgmtp.gradle.libactivity.plugin
 
-import com.mgmtp.gradle.libactivity.plugin.result.data.config.LocalConfigCheckResultGroupMeta
 import com.mgmtp.gradle.libactivity.plugin.result.data.lib.LibCheckResultGroupMeta
 import groovy.json.JsonBuilder
 import groovy.transform.TupleConstructor
 import groovy.transform.VisibilityOptions
 import groovy.transform.options.Visibility
+import org.gradle.internal.impldep.org.junit.Rule
+import org.gradle.internal.impldep.org.junit.rules.TemporaryFolder
 import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
-import org.junit.Rule
-import org.junit.rules.TemporaryFolder
 import spock.lang.Specification
 
 class LibActivityPluginFunctionalTest extends Specification {
@@ -20,11 +19,11 @@ class LibActivityPluginFunctionalTest extends Specification {
 
     File testProjectDir
 
-    static final String LIB_COMMONS_LANG_3 = 'org.apache.commons:commons-lang3:3.21.0'
+    static final String LIB_COMMONS_LANG_3 = 'org.apache.commons:commons-lang3:3.19.0'
 
-    static final String LIB_LOGBACK_CLASSIC = 'ch.qos.logback:logback-classic:1.5.21'
+    static final String LIB_LOGBACK_CLASSIC = 'ch.qos.logback:logback-classic:1.5.19'
 
-    static final String LIB_LOGBACK_CORE = 'ch.qos.logback:logback-core:1.5.21'
+    static final String LIB_LOGBACK_CORE = 'ch.qos.logback:logback-core:1.5.19'
 
     static String TASK_NAME = ':checkLibActivity'
 
@@ -163,7 +162,7 @@ class LibActivityPluginFunctionalTest extends Specification {
         normalizedFileOutput.contains( LIB_COMMONS_LANG_3)
         !normalizedFileOutput.contains( LIB_LOGBACK_CORE)
         !normalizedFileOutput.contains( LIB_LOGBACK_CLASSIC)
-        
+
     }
 
     /**
@@ -321,14 +320,14 @@ class LibActivityPluginFunctionalTest extends Specification {
         new File( testProjectDir, 'build.gradle') << """
 			plugins {
 			    id 'groovy'
-				id 'com.mgmtp.gradle-libactivity-plugin'
+				id 'de.elster.gradle-libactivity-plugin'
 			}
 			dependencies {
 			    ${ implementationDependencies}
 			}
             ${ if( taskOptionString) {
                 """
-                tasks.withType( com.mgmtp.gradle.libactivity.plugin.CheckLibActivity) {
+                tasks.withType( de.elster.gradle.libactivity.plugin.CheckLibActivity) {
                     ${ taskOptionString}
                 }
             """
